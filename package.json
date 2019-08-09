@@ -1,0 +1,43 @@
+{
+  "name": "hurma-file-uploader",
+  "version": "0.1.0",
+  "description": "File uploader component for Vue",
+  "main": "/dist/hurma-file-uploader.js",
+  "author": "Smirnov Vadim",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hurmastudio/hurma-file-uploader.git"
+  },
+  "scripts": {
+    "build": "npm run build:dev",
+    "build:dev": "webpack --progress --hide-modules --config=webpack.config.js --mode development",
+    "watch:prod": "webpack --progress --hide-modules --config=webpack.config.js --mode development --watch"
+  },
+  "dependencies": {
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "autoprefixer": "^9.6.1",
+    "babel-loader": "^8.0.6",
+    "babel-polyfill": "^6.26.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "postcss": "^7.0.17",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.0.0",
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.1",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
+  }
+}
