@@ -76,7 +76,7 @@ module.exports = {
     }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name].css"
+      filename: "hurma-file-uploader.css"
     })
   ]
 };
