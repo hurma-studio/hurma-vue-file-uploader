@@ -11560,4 +11560,4 @@ function FileUploader() {
 
 /******/ });
 });
-//# sourceMappingURL=hurma-file-uploader.js.map
+//# sourceMappingURL=hurma-vue-file-uploader.js.map
