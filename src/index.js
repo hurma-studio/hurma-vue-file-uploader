@@ -1,5 +1,6 @@
-import Uploader from "./hurma-file-uploader.vue";
+import FileUploader from "./hurma-file-uploader.vue";
 
-export function FileUploader() {
-  return Uploader;
-}
+export default {
+  ...FileUploader,
+  install: vue => vue.component("hurma-file-uploader", FileUploader)
+};

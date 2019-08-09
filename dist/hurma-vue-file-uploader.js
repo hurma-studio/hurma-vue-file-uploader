@@ -11544,17 +11544,24 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! exports provided: FileUploader */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FileUploader", function() { return FileUploader; });
 /* harmony import */ var _hurma_file_uploader_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hurma-file-uploader.vue */ "./src/hurma-file-uploader.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function FileUploader() {
-  return _hurma_file_uploader_vue__WEBPACK_IMPORTED_MODULE_0__["default"];
-}
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_objectSpread({}, _hurma_file_uploader_vue__WEBPACK_IMPORTED_MODULE_0__["default"], {
+  install: function install(vue) {
+    return vue.component("hurma-file-uploader", _hurma_file_uploader_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
+  }
+}));
 
 /***/ })
 
