@@ -8,7 +8,8 @@
         "helpers": false,
         "regenerator": true,
         "useESModules": false
-      }
+      },
+      "@babel/plugin-syntax-dynamic-import"
     ]
   ]
 }
