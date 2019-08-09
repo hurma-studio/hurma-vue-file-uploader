@@ -1,6 +1,6 @@
 {
   "name": "hurma-vue-file-uploader",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "File uploader component for Vue",
   "main": "/dist/hurma-vue-file-uploader.js",
   "author": "Smirnov Vadim",
