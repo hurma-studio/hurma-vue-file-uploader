@@ -1,6 +1,6 @@
 {
   "name": "hurma-vue-file-uploader",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "File uploader component for Vue",
   "main": "/dist/hurma-vue-file-uploader.js",
   "author": "Smirnov Vadim",
@@ -12,7 +12,7 @@
   "scripts": {
     "build": "npm run build:dev",
     "build:dev": "webpack --progress --hide-modules --config=webpack.config.js --mode development",
-    "watch:prod": "webpack --progress --hide-modules --config=webpack.config.js --mode development --watch"
+    "build:prod": "webpack --progress --hide-modules --config=webpack.config.js --mode development"
   },
   "dependencies": {
     "axios": "^0.19.0",
