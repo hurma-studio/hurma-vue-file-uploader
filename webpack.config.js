@@ -12,7 +12,7 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "hurma-file-uploader.js",
+    filename: "hurma-vue-file-uploader.js",
     library: "Hurma",
     libraryTarget: "umd"
   },
@@ -76,7 +76,7 @@ module.exports = {
     }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: "hurma-file-uploader.css"
+      filename: "hurma-vue-file-uploader.css"
     })
   ]
 };

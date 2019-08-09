@@ -1,13 +1,13 @@
 {
-  "name": "hurma-file-uploader",
+  "name": "hurma-vue-file-uploader",
   "version": "0.1.0",
   "description": "File uploader component for Vue",
-  "main": "/dist/hurma-file-uploader.js",
+  "main": "/dist/hurma-vue-file-uploader.js",
   "author": "Smirnov Vadim",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hurmastudio/hurma-file-uploader.git"
+    "url": "https://github.com/hurmastudio/hurma-vue-file-uploader.git"
   },
   "scripts": {
     "build": "npm run build:dev",
