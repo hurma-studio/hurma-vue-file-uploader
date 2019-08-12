@@ -72,6 +72,13 @@ export default {
       default: () => {
         return false;
       }
+    },
+    headers: {
+      type: Object,
+      required: false,
+      default: () => {
+        return {};
+      }
     }
   },
   components: {},
@@ -140,7 +147,10 @@ export default {
       });
 
       Axios.post(this.url, data, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: Vue.extend(
+          { "Content-Type": "multipart/form-data" },
+          this.headers
+        ),
         onUploadProgress: e => {
           this.progress[index].loaded = e.loaded;
           this.progress[index].total = e.total;
