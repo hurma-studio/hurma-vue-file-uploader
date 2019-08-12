@@ -86,7 +86,8 @@ export default {
     return {
       progress: {},
       error: false,
-      errorText: ""
+      errorText: "",
+      currentProgress: 0
     };
   },
   computed: {
@@ -95,18 +96,18 @@ export default {
     },
     text() {
       return this.inProgress ? this.uploadText : this.selectText;
-    },
-    currentProgress() {
-      let loaded = 0;
-      let total = 0;
-
-      Object.keys(this.progress).forEach(key => {
-        loaded += this.progress[key].loaded;
-        total += this.progress[key].total;
-      });
-
-      return (loaded / total) * 100;
     }
+    // currentProgress() {
+    //   let loaded = 0;
+    //   let total = 0;
+
+    //   Object.keys(this.progress).forEach(key => {
+    //     loaded += this.progress[key].loaded;
+    //     total += this.progress[key].total;
+    //   });
+
+    //   return (loaded / total) * 100;
+    // }
   },
   mounted() {},
   methods: {
@@ -147,22 +148,38 @@ export default {
       });
 
       Axios.post(this.url, data, {
-        headers: Vue.extend(
+        headers: Vue.util.extend(
           { "Content-Type": "multipart/form-data" },
           this.headers
         ),
         onUploadProgress: e => {
+          //console.log("Progress:", e.loaded, e.total);
           this.progress[index].loaded = e.loaded;
           this.progress[index].total = e.total;
+
+          this.updateCurrentProgress();
         }
       })
         .then(response => {
           Vue.delete(this.progress, index);
+          this.updateCurrentProgress();
           this.$emit("onFileUpload", response.data);
         })
         .catch(response => {
           Vue.delete(this.progress, index);
+          this.updateCurrentProgress();
         });
+    },
+    updateCurrentProgress() {
+      let loaded = 0;
+      let total = 0;
+
+      Object.keys(this.progress).forEach(key => {
+        loaded += this.progress[key].loaded;
+        total += this.progress[key].total;
+      });
+
+      this.currentProgress = (loaded / total) * 100;
     }
   },
   watch: {}

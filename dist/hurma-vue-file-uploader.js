@@ -1959,7 +1959,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       progress: {},
       error: false,
-      errorText: ""
+      errorText: "",
+      currentProgress: 0
     };
   },
   computed: {
@@ -1968,18 +1969,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     text: function text() {
       return this.inProgress ? this.uploadText : this.selectText;
-    },
-    currentProgress: function currentProgress() {
-      var _this = this;
+    } // currentProgress() {
+    //   let loaded = 0;
+    //   let total = 0;
+    //   Object.keys(this.progress).forEach(key => {
+    //     loaded += this.progress[key].loaded;
+    //     total += this.progress[key].total;
+    //   });
+    //   return (loaded / total) * 100;
+    // }
 
-      var loaded = 0;
-      var total = 0;
-      Object.keys(this.progress).forEach(function (key) {
-        loaded += _this.progress[key].loaded;
-        total += _this.progress[key].total;
-      });
-      return loaded / total * 100;
-    }
   },
   mounted: function mounted() {},
   methods: {
@@ -1987,12 +1986,12 @@ __webpack_require__.r(__webpack_exports__);
       this.$el.querySelector("[type=file]").click(e);
     },
     onFileChange: function onFileChange(e) {
-      var _this2 = this;
+      var _this = this;
 
       var files = Array.from(e.target.files || e.dataTransfer.files);
       if (!files.length) return;
       var bigFiles = files.filter(function (file) {
-        return _this2.maxSize > 0 && file.size > _this2.maxSize;
+        return _this.maxSize > 0 && file.size > _this.maxSize;
       });
 
       if (bigFiles.length) {
@@ -2000,16 +1999,16 @@ __webpack_require__.r(__webpack_exports__);
         this.errorText = "max size ".concat(this.maxSize, "b");
         this.error = true;
         setTimeout(function () {
-          _this2.error = false;
+          _this.error = false;
         }, 2000);
       } else {
         files.forEach(function (file, index) {
-          _this2.uploadFile(file, index);
+          _this.uploadFile(file, index);
         });
       }
     },
     uploadFile: function uploadFile(file, index) {
-      var _this3 = this;
+      var _this2 = this;
 
       var data = new FormData();
       data.append("file", file);
@@ -2018,20 +2017,38 @@ __webpack_require__.r(__webpack_exports__);
         total: file.size
       });
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(this.url, data, {
-        headers: vue__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+        headers: vue__WEBPACK_IMPORTED_MODULE_0__["default"].util.extend({
           "Content-Type": "multipart/form-data"
         }, this.headers),
         onUploadProgress: function onUploadProgress(e) {
-          _this3.progress[index].loaded = e.loaded;
-          _this3.progress[index].total = e.total;
+          //console.log("Progress:", e.loaded, e.total);
+          _this2.progress[index].loaded = e.loaded;
+          _this2.progress[index].total = e.total;
+
+          _this2.updateCurrentProgress();
         }
       }).then(function (response) {
-        vue__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"](_this3.progress, index);
+        vue__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"](_this2.progress, index);
 
-        _this3.$emit("onFileUpload", response.data);
+        _this2.updateCurrentProgress();
+
+        _this2.$emit("onFileUpload", response.data);
       })["catch"](function (response) {
-        vue__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"](_this3.progress, index);
+        vue__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"](_this2.progress, index);
+
+        _this2.updateCurrentProgress();
       });
+    },
+    updateCurrentProgress: function updateCurrentProgress() {
+      var _this3 = this;
+
+      var loaded = 0;
+      var total = 0;
+      Object.keys(this.progress).forEach(function (key) {
+        loaded += _this3.progress[key].loaded;
+        total += _this3.progress[key].total;
+      });
+      this.currentProgress = loaded / total * 100;
     }
   },
   watch: {}
